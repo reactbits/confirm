@@ -1,0 +1,49 @@
+{
+  "name": "react-confirm2",
+  "version": "0.1.0",
+  "description": "Replacement of confirm function with react-bootstrap.",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "node devserver.js",
+    "lint": "eslint .",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactbits/confirm.git"
+  },
+  "keywords": [
+    "react",
+    "confirm"
+  ],
+  "author": "Sergey Todyshev <stodyshev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reactbits/confirm/issues"
+  },
+  "homepage": "https://github.com/reactbits/confirm#readme",
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-bootstrap": "^0.28.2",
+    "react-dom": "^0.14.7"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-core": "^6.4.5",
+    "babel-eslint": "^5.0.0-beta9",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.1.0",
+    "babel-preset-stage-0": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^5.0.0",
+    "eslint-plugin-react": "^3.16.1",
+    "express": "^4.13.4",
+    "jquery": "^2.2.0",
+    "morgan": "^1.6.1",
+    "webpack": "^1.12.13",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.6.4"
+  }
+}
