@@ -41,7 +41,7 @@
     "eslint-plugin-react": "^3.16.1",
     "express": "^4.13.4",
     "jquery": "^2.2.0",
-    "morgan": "^1.6.1",
+    "morgan": "^1.7.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.7.1"
