@@ -43,7 +43,7 @@
     "jquery": "^2.2.2",
     "morgan": "^1.7.0",
     "webpack": "^1.12.14",
-    "webpack-dev-middleware": "^1.5.1",
+    "webpack-dev-middleware": "^1.6.0",
     "webpack-hot-middleware": "^2.10.0"
   }
 }
