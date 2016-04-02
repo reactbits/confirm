@@ -24,7 +24,7 @@
   "homepage": "https://github.com/reactbits/confirm#readme",
   "dependencies": {
     "react": "^0.14.8",
-    "react-bootstrap": "^0.28.4",
+    "react-bootstrap": "^0.28.5",
     "react-dom": "^0.14.8"
   },
   "devDependencies": {
