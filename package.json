@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "jquery": "^2.2.3",
-    "react-devpack": "^0.1.15"
+    "react-devpack": "^0.1.16"
   }
 }
