@@ -26,10 +26,10 @@ export function deferred() {
 }
 
 class Confirm extends Component {
-  static defaultProps = {
-	confirmLabel: 'OK',
-	abortLabel: 'Cancel',
-  };
+	static defaultProps = {
+		confirmLabel: 'OK',
+		abortLabel: 'Cancel',
+	};
 
 	state = {
 		show: true,
@@ -61,23 +61,23 @@ class Confirm extends Component {
         {body}
 				<Modal.Footer>
 					<div className="text-right">
-						<Button role="abort" onClick={this.abort}>
+						<Button onClick={this.abort}>
 							{this.props.abortLabel}
 						</Button>
 						{' '}
-						<Button role="confirm" bsStyle="primary" onClick={this.confirm}>
+						<Button bsStyle="primary" onClick={this.confirm}>
 							{this.props.confirmLabel}
 						</Button>
 					</div>
 				</Modal.Footer>
-      </Modal>
+			</Modal>
     );
 	}
 }
 
 export default function confirm(message, options = {}) {
 	const wrapper = document.body.appendChild(document.createElement('div'));
-	const component = render(<Confirm message={message} {...options}/>, wrapper);
+	const component = render(<Confirm message={message} {...options} />, wrapper);
 	return component.deferred.always(() => {
 		unmountComponentAtNode(wrapper);
 		wrapper.remove();
