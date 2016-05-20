@@ -28,7 +28,7 @@
     "react-dom": "^15.0.2"
   },
   "devDependencies": {
-    "jquery": "^2.2.3",
+    "jquery": "^2.2.4",
     "react-devpack": "^0.1.31"
   }
 }
