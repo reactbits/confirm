@@ -1,9 +1,11 @@
 import confirm from '../src';
 
-confirm('Are you sure?').then(
-	() => confirm('Really?'),
-	() => console.log('no'),
-).then(
-	() => console.log('ok, got it'),
-	() => console.log('no'),
-);
+confirm('Are you sure?', {
+	done: () => {
+		console.log('ok, got it');
+	},
+});
+
+confirm('Are you sure?', () => {
+	console.log('done');
+});

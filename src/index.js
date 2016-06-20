@@ -1,58 +1,59 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { Modal, Button } from 'react-bootstrap';
-
-function noop() { }
-
-function wrap(fn, before) {
-	return function (...args) {
-		before();
-		return fn.apply(null, args);
-	};
-}
-
-export function deferred() {
-	const d = { resolve: noop, reject: noop };
-	d.promise = new Promise((resolve, reject) => {
-		d.resolve = resolve;
-		d.reject = reject;
-	});
-	d.always = function (before) {
-		d.resolve = wrap(d.resolve, before);
-		d.reject = wrap(d.reject, before);
-		return d;
-	};
-	return d;
-}
 
 class Confirm extends Component {
 	static defaultProps = {
+		message: 'Are you sure?',
 		confirmLabel: 'OK',
 		abortLabel: 'Cancel',
+		unmount: _.noop,
+		close: _.noop,
+		done: _.noop,
 	};
 
-	state = {
-		show: true,
-	};
-
-	componentDidMount() {
-		this.deferred = deferred();
+	constructor(props) {
+		super(props);
+		this.state = { show: true };
+		this.cancel = this.cancel.bind(this);
+		this.done = this.done.bind(this);
 	}
 
-	abort = () => {
-		this.setState({ show: false });
-		setTimeout(() => this.deferred.reject());
-	};
+	unmount() {
+		const container = this.props.container;
+		ReactDOM.unmountComponentAtNode(container);
+		container.remove();
+	}
 
-	confirm = () => {
+	cancel() {
 		this.setState({ show: false });
-		setTimeout(() => this.deferred.resolve(true));
-	};
+		setTimeout(() => {
+			this.unmount();
+			this.props.close();
+		});
+	}
+
+	done() {
+		this.setState({ show: false });
+		setTimeout(() => {
+			this.unmount();
+			this.props.done();
+		});
+	}
 
 	render() {
 		const body = this.props.description
 			? <Modal.Body><p>{this.props.description}</p></Modal.Body>
 			: null;
+		const cancelButton = (
+			<Button onClick={this.cancel}>{this.props.abortLabel}</Button>
+		);
+		const okButton = (
+			<Button bsStyle="primary" onClick={this.done}>
+				{this.props.confirmLabel}
+			</Button>
+		);
 		return (
 			<Modal show={this.state.show}>
 				<Modal.Header>
@@ -61,13 +62,7 @@ class Confirm extends Component {
         {body}
 				<Modal.Footer>
 					<div className="text-right">
-						<Button onClick={this.abort}>
-							{this.props.abortLabel}
-						</Button>
-						{' '}
-						<Button bsStyle="primary" onClick={this.confirm}>
-							{this.props.confirmLabel}
-						</Button>
+						{okButton}&nbsp;{cancelButton}
 					</div>
 				</Modal.Footer>
 			</Modal>
@@ -76,10 +71,15 @@ class Confirm extends Component {
 }
 
 export default function confirm(message, options = {}) {
-	const wrapper = document.body.appendChild(document.createElement('div'));
-	const component = render(<Confirm message={message} {...options} />, wrapper);
-	return component.deferred.always(() => {
-		unmountComponentAtNode(wrapper);
-		wrapper.remove();
-	}).promise;
+	const container = document.createElement('div');
+	document.body.appendChild(container);
+
+	const props = { message, container };
+	if (_.isFunction(options)) {
+		props.done = options;
+	} else {
+		Object.assign(props, options);
+	}
+
+	ReactDOM.render(<Confirm {...props} />, container);
 }
