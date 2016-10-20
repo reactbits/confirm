@@ -23,7 +23,7 @@ class Confirm extends Component {
   unmount() {
     const container = this.props.container;
     ReactDOM.unmountComponentAtNode(container);
-    container.remove();
+    container.parentNode.removeChild(container); // was previously container.remove(); which doesn't work in IE11
   }
 
   cancel() {
