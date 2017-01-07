@@ -26,7 +26,7 @@
     "lodash": "^4.17.3",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
