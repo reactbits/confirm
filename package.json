@@ -1,6 +1,6 @@
 {
   "name": "react-confirm2",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "Replacement of confirm function with react-bootstrap.",
   "main": "lib/index.js",
   "scripts": {
