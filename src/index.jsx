@@ -1,16 +1,18 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Modal, Button } from 'react-bootstrap';
+
+const noop = () => {};
+const isFunction = v => typeof v === 'function';
 
 class Confirm extends Component {
   static defaultProps = {
     message: 'Are you sure?',
     confirmLabel: 'OK',
     abortLabel: 'Cancel',
-    unmount: _.noop,
-    close: _.noop,
-    done: _.noop,
+    unmount: noop,
+    close: noop,
+    done: noop,
   };
 
   constructor(props) {
@@ -23,7 +25,7 @@ class Confirm extends Component {
   unmount() {
     const container = this.props.container;
     ReactDOM.unmountComponentAtNode(container);
-    container.parentNode.removeChild(container); // was previously container.remove(); which doesn't work in IE11
+    container.parentNode.removeChild(container);
   }
 
   cancel() {
@@ -75,7 +77,7 @@ export default function confirm(message, options = {}) {
   document.body.appendChild(container);
 
   const props = { message, container };
-  if (_.isFunction(options)) {
+  if (isFunction(options)) {
     props.done = options;
   } else {
     Object.assign(props, options);
