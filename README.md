@@ -10,3 +10,21 @@ confirm('Are you sure?', () => {
   console.log('yes');
 });
 ```
+
+## Other examples:
+
+### Basic restyling
+
+```js
+confirm('Are you sure?', {
+  confirmLabel: 'Im sure!!!',
+    description:(
+      <div>
+        Please make sure you are sure.
+       </div>
+    ),
+    done: () => console.log('confirmed')
+})
+```         
+         
+        
